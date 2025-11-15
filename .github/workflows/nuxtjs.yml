@@ -78,13 +78,17 @@ jobs:
       - name: Static HTML export with Nuxt
         run: ${{ steps.detect-package-manager.outputs.manager }} run generate --no-clean -- --log-level=verbose
         continue-on-error: true
+      - name: List output
+        run: |
+          ls -la .output || echo ".output not found"
+          ls -la dist || echo "dist not found
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           name: nuxt-output
           path: |
-            .output
-            dist
+            .output/**
+            dist/**
 
   # Deployment job
   deploy:
