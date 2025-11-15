@@ -81,7 +81,7 @@ jobs:
       - name: List output
         run: |
           ls -la .output || echo ".output not found"
-          ls -la dist || echo "dist not found
+          ls -la dist || echo "dist not found"
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
