@@ -73,6 +73,9 @@ jobs:
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
         env:
           NODE_ENV: development
+      - run: ls -la assets/
+      - run: npm ls tailwindcss postcss autoprefixer
+      - run: npm ls
       - name: Static HTML export with Nuxt
         run: NUXT_LOG_LEVEL=debug ${{ steps.detect-package-manager.outputs.manager }} run generate --no-clean -- --log-level=verbose
         continue-on-error: true
