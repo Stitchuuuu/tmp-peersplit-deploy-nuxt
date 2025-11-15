@@ -24,6 +24,9 @@ concurrency:
   group: "pages"
   cancel-in-progress: false
 
+env:
+  NITRO_LOG_LEVEL: debug
+
 jobs:
   # Build job
   build:
@@ -73,7 +76,7 @@ jobs:
       - name: Intall core dependencies
         run: ${{ steps.detect-package-manager.outputs.manager }} install postcss postcss-import autoprefixer tailwindcss
       - name: Static HTML export with Nuxt
-        run: ${{ steps.detect-package-manager.outputs.manager }} run generate -- --log-level=debug
+        run: ${{ steps.detect-package-manager.outputs.manager }} run generate -- --log-level=verbose
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:

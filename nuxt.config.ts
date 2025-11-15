@@ -17,7 +17,7 @@ export default defineNuxtConfig({
   
   // Debug
   devtools: { enabled: true },
-  logger: { level: 'debug' },
+  logger: { level: 'verbose' },
   hooks: {
     'nitro:prerender:error'(err, route) {
       console.error(`❌ Error prerendering route: ${route}`)
