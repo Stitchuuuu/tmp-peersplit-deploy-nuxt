@@ -85,8 +85,7 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           name: nuxt-output
-          path: |
-            .output/**
+          path: .output/public
 
   # Deployment job
   deploy:
