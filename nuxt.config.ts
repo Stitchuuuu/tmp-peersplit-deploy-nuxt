@@ -14,7 +14,16 @@ const moduleExclude = (match) => {
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   compatibilityDate: "2024-04-03",
-  // devtools: { enabled: true },
+  
+  // Debug
+  devtools: { enabled: true },
+  logger: { level: 'debug' },
+  hooks: {
+    'nitro:prerender:error'(err, route) {
+      console.error(`❌ Error prerendering route: ${route}`)
+      console.error(err)
+    }
+  },
   modules: [
     "@nuxt/ui",
     "@nuxt/fonts",
