@@ -71,19 +71,19 @@ jobs:
           key: ${{ runner.os }}-nuxt-build-${{ hashFiles('dist') }}
           restore-keys: |
             ${{ runner.os }}-nuxt-build-
+      - name: Clean previous build
+        run: rm -rf node_modules .nuxt .output
       - name: Install dependencies
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
         env:
           NODE_ENV: development
       - name: Intall core dependencies
         run: ${{ steps.detect-package-manager.outputs.manager }} install postcss postcss-import autoprefixer tailwindcss
-      - run: ls -la assets
-      - run: ls -la node_modules/tailwindcss
       - name: Static HTML export with Nuxt
-        run: ${{ steps.detect-package-manager.outputs.manager }} run generate --no-clean -- --log-level=debug
+        run: ${{ steps.detect-package-manager.outputs.manager }} run generate --no-clean -- --log-level=verbose
         continue-on-error: true
-      - name: Check generated CSS
-        run: cat .nuxt/dist/client/_nuxt/*.css | head -n 20
+      - name: Check Tailwind CSS
+        run: cat .nuxt/dist/client/_nuxt/*.css | grep "text-center"
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
