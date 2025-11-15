@@ -79,13 +79,11 @@ jobs:
         run: ${{ steps.detect-package-manager.outputs.manager }} install postcss postcss-import autoprefixer tailwindcss
       - run: ls -la assets
       - run: ls -la node_modules/tailwindcss
-      - run: npx postcss -v
       - name: Static HTML export with Nuxt
         run: ${{ steps.detect-package-manager.outputs.manager }} run generate --no-clean -- --log-level=debug
         continue-on-error: true
-      - name: List output
-        run: |
-          ls -la .output || echo ".output not found"
+      - name: Check generated CSS
+        run: cat .nuxt/dist/client/_nuxt/*.css | head -n 20
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
