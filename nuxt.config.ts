@@ -31,6 +31,7 @@ export default defineNuxtConfig({
       "/*": { prerender: true },
     },
   },
+  css: ['~/assets/tailwind.css', '~/assets/main.css'],
   pwa: {
     strategies: "generateSW",
     registerWebManifestInRouteRules: true,
